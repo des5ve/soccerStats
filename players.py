@@ -56,7 +56,6 @@ def topGoalScorers(league, goals):
     removal = players[players.xG != 'xG']
     playersClean = removal.astype(convert_dict)
     goalLeaders =  playersClean.query('Gls > @goals')
-    print (goalLeaders[['Player', 'Gls/90', 'Ast/90', 'xG/90', 'xA/90', 'npxG/90', 'xG+xA/90']] )
     return(goalLeaders)
 
 def topAssistors(league, assists):
@@ -78,7 +77,6 @@ def topAssistors(league, assists):
     removal = players[players.xG != 'xG']
     playersClean = removal.astype(convert_dict)
     goalLeaders =  playersClean.query('Ast > @assists')
-    print (goalLeaders[['Player', 'Ast', 'Gls/90', 'Ast/90', 'xG/90', 'xA/90', 'npxG/90', 'xG+xA/90']] )
     return(goalLeaders)
 
 
