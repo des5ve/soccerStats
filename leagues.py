@@ -22,6 +22,30 @@ ligueOneStats = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=
 serieAStats = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F11%2FSerie-A-Stats&div=div_results32601_overall"
 
 
+#Advanced Goalkeeping Url
+premGoalKeeping = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F9%2FPremier-League-Stats&div=div_stats_keeper_adv_squads"
+laLigaGoalKeeping = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F12%2FLa-Liga-Stats&div=div_stats_keeper_adv_squads"
+bundesligaGoalKeeping = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F20%2FBundesliga-Stats&div=div_stats_keeper_adv_squads"
+ligueOneGoalKeeping = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F13%2FLigue-1-Stats&div=div_stats_keeper_adv_squads"
+serieAGoalKeeping = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F11%2FSerie-A-Stats&div=div_stats_keeper_adv_squads"
+
+#Shooting
+premShooting = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F9%2FPremier-League-Stats&div=div_stats_shooting_squads"
+laLigaShooting = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F12%2FLa-Liga-Stats&div=div_stats_shooting_squads"
+bundesligaShooting = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F20%2FBundesliga-Stats&div=div_stats_shooting_squads"
+ligueOneShooting = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F13%2FLigue-1-Stats&div=div_stats_shooting_squads"
+serieAShooting = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F11%2FSerie-A-Stats&div=div_stats_shooting_squads"
+
+#Passing
+premPassing = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F9%2FPremier-League-Stats&div=div_stats_passing_squads"
+laLigaPassing = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F12%2FLa-Liga-Stats&div=div_stats_passing_squads"
+bundesligaPassing = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F20%2FBundesliga-Stats&div=div_stats_passing_squads"
+ligueOneShooting = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F13%2FLigue-1-Stats&div=div_stats_passing_squads"
+serieAShooting = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F11%2FSerie-A-Stats&div=div_stats_shooting_squads"
+
+
+
+
 def leagueTable(league):
     if league == "epl":
         url = prem
@@ -58,3 +82,10 @@ def leagueStats(league):
 
 
 leagueStats("epl")
+
+#Desired Calls
+
+# epl.'stat'(#team)
+# bundesliga.'stat'(#team)
+
+
