@@ -43,6 +43,12 @@ bundesligaPassing = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&
 ligueOneShooting = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F13%2FLigue-1-Stats&div=div_stats_passing_squads"
 serieAShooting = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F11%2FSerie-A-Stats&div=div_stats_shooting_squads"
 
+#Squad Playing Time
+premPlayingTime = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F9%2FPremier-League-Stats&div=div_stats_playing_time_squads"
+laLigaPlayingTime = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F12%2FLa-Liga-Stats&div=div_stats_playing_time_squads"
+bundesligaPlayingTime = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F20%2FBundesliga-Stats&div=div_stats_playing_time_squads"
+ligueOnePlayingTime = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F13%2FLigue-1-Stats&div=div_stats_playing_time_squads"
+serieAPlayingTime = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F11%2FSerie-A-Stats&div=div_stats_playing_time_squads"
 
 
 
