@@ -35,7 +35,7 @@ convert_dict = {'Min': float,
                 'xG/90': float,
                 'xA/90': float,
                 'xG+xA/90': float,
-                'npxG/90': float}
+                'npxG/90': float,}
 
 columns = ['Rk', 'Player', 'Nation', 'Pos', 'Squad', 'Age', 'Born', 'MP', 'Starts', 'Min', 'Gls', 'Ast', 'PK', 'PKatt', 'CrdY', 'CrdR', 'Gls/90','Ast/90','G+A/90','G-PK/90', 'G+A-PK/90', 'xG', 'npxG', 'xA', 'xG/90', 'xA/90', 'xG+xA/90', 'npxG/90', 'npxG+xA/90', 'Matches']
 
@@ -69,6 +69,7 @@ def leagues(league):
     removal = players[players.xG != 'xG']
     playersClean = removal.astype(convert_dict)
     playersClean['League'] = league
+    playersClean.astype({'League': str})
     return playersClean
 
 premFrame = leagues("epl")

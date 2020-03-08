@@ -13,6 +13,13 @@ ligueOne = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen
 bundesliga = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F20%2Fstats%2FBundesliga-Stats&div=div_stats_standard"
 serieA = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F11%2Fstats%2FSerie-A-Stats&div=div_stats_standard"
 
+#List of basic League Table Widgets
+premTable = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F9%2FPremier-League-Stats&div=div_results32321_overall"
+laLigaTable = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F12%2FLa-Liga-Stats&div=div_results32391_overall"
+bundesligaTable = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F20%2FBundesliga-Stats&div=div_results32481_overall"
+ligueOneTable = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F13%2FLigue-1-Stats&div=div_results32431_overall"
+serieATable = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F11%2FSerie-A-Stats&div=div_results32601_overall"
+
 #Convert Dataframe Colunns to proper Datatypes
 convert_dict = {'Min': float,
                 'Gls': float, 
@@ -61,11 +68,34 @@ def leaders(league):
     return (goalLeaders, assistLeaders, xGLeaders, xALeaders)
 
 
+def table(league):
+    if league == "epl":
+        url = premTable
+    elif league == 'bundesliga':
+        url = bundesligaTable
+    elif league == 'laLiga':
+        url = laLigaTable
+    elif league == 'serieA':
+        url = serieATable
+    elif league == 'ligueOne':
+        url = ligueOneTable
+    else:
+        print ("League Not Recognized. Options are: epl, bundesliga, laLiga, serieA, ligueOne") 
+    table = pd.read_html(url, encoding='utf8')[0]
+    return table 
 
-eplScorers = leaders("epl")
-bundesligaScorers = leaders("bundesliga")
-serieAScorers = leaders("serieA")
-laLigaScorers = leaders("laLiga")
-ligueOneScorers = leaders("ligueOne")
 
 
+
+#eplScorers = leaders("epl")
+#bundesligaScorers = leaders("bundesliga")
+#serieAScorers = leaders("serieA")
+#laLigaScorers = leaders("laLiga")
+#ligueOneScorers = leaders("ligueOne")
+
+eplT = table("epl")
+print (eplT.dtypes)
+#bundesligaT = table("bundesliga")
+#serieAT = table("serieA")
+#laLigaT = table("laLiga")
+#ligueOneT = table("ligueOne")
