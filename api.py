@@ -89,13 +89,17 @@ def table(league):
 
 #eplScorers = leaders("epl")
 #bundesligaScorers = leaders("bundesliga")
-#serieAScorers = leaders("serieA")
+serieAScorers = leaders("serieA")
 #laLigaScorers = leaders("laLiga")
 #ligueOneScorers = leaders("ligueOne")
 
-eplT = table("epl")
-print (eplT.dtypes)
+#eplT = table("epl")
+
 #bundesligaT = table("bundesliga")
-#serieAT = table("serieA")
+serieAT = table("serieA")
 #laLigaT = table("laLiga")
 #ligueOneT = table("ligueOne")
+
+scorers = serieAScorers[0]
+print (scorers[['Player', 'Age', 'Pos' ,'Squad', 'Gls/90', 'Ast/90', 'xG/90', 'xA/90', 'npxG/90', 'xG+xA/90']].sort_values(by = 'npxG/90', ascending=False))
+print (serieAT)

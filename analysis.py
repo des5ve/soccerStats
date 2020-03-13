@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
+from matplotlib import style
 
 
 frame = pd.read_csv("AllPlayers.csv")
@@ -34,6 +35,11 @@ y1 = bundesliga['Gls']
 x2 = ligueOne['xG']
 y2 = ligueOne['Gls']
 
+
+
+print(plt.style.available)
+print(plt.__file__)
+style.use('ggplot')
 plt.figure(figsize=(15, 5))
 plt.subplot(131)
 plt.scatter(x,y)
