@@ -19,10 +19,10 @@ ligueOneTable = "https://fbref.com/en/comps/13/Ligue-1-Stats"
 serieATable = "https://fbref.com/en/comps/11/Serie-A-Stats"
 
 # create sqlalchemy engine
-engine = ce("mysql+pymysql://{user}:{pw}@nfldb2.cke1iobwnywt.us-east-1.rds.amazonaws.com/{db}"
-                       .format(user="des5ve",
-                               pw="Cm14fcfire",
-                               db="BetTrack"))
+engine = ce("mysql+pymysql://{user}:{pw}@/{db}"
+                       .format(user="",
+                               pw="",
+                               db=""))
 
 def loadTable(league):
     if league == "epl":
