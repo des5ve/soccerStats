@@ -5,7 +5,11 @@ import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
-import urllib
+from selenium import webdriver
+
+#load phantomJS driver
+#change the executable path after you got it installed
+browser = webdriver.PhantomJS(executable_path="C:\\Users\\Shashank\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe")
 
 #Leagues
 # prem = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F9%2Fstats%2FPremier-League-Stats&div=div_stats_standard"
@@ -15,11 +19,11 @@ import urllib
 # serieA = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F11%2Fstats%2FSerie-A-Stats&div=div_stats_standard"
 
 #Leagues
-prem = "https://fbref.com/stathead/share.fcgi?id=/DHQKM&lang=en"
-laLiga = "https://fbref.com/stathead/share.fcgi?id=/Wh2eo&lang=en"
-ligueOne = ""
-bundesliga = "https://fbref.com/stathead/share.fcgi?id=/W4BCU&lang=en"
-serieA = "https://fbref.com/stathead/share.fcgi?id=/vjuJk&lang=en"
+prem = "https://fbref.com/en/comps/9/stats/Premier-League-Stats#stats_standard::none"
+laLiga = "https://fbref.com/en/comps/12/stats/La-Liga-Stats#stats_standard::none"
+ligueOne = "https://fbref.com/en/comps/13/stats/Ligue-1-Stats#stats_standard::none"
+bundesliga = "https://fbref.com/en/comps/20/stats/Bundesliga-Stats#stats_standard::none"
+serieA = "https://fbref.com/en/comps/11/stats/Serie-A-Stats#stats_standard::none"
 
 #List of basic League Table Widgets
 # premTable = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F9%2FPremier-League-Stats&div=div_results32321_overall"
@@ -69,24 +73,31 @@ def leaders(league):
         url = ligueOne
     else:
         print ("League Not Recognized. Options are: epl, bundesliga, laLiga, serieA, ligueOne") 
-    # print(url)
-    if url:
-        r = requests.get(url, headers={"User-Agent":"Mozilla/5.0"})
-        soup = BeautifulSoup(r.text)
-        # print(r.encoding)
-        all_stats_standard = soup.find_all('table')
-        # print(all_stats_standard)
-        players = pd.read_html(str(all_stats_standard))[0]
-        # players.columns = players.columns.droplevel(0)
-        print(players.columns)
-        players.columns = ['Rk', 'Player', 'Nation', 'Pos', 'Squad', 'Age', 'Born', 'MP', 'Starts', 'Min', 'Gls', 'Ast', 'PK', 'PKatt', 'CrdY', 'CrdR', 'Gls/90','Ast/90','G+A/90','G-PK/90', 'G+A-PK/90', 'xG', 'npxG', 'xA', 'xG/90', 'xA/90', 'xG+xA/90', 'npxG/90', 'npxG+xA/90', 'Matches']
-        removal = players[players.xG != 'xG']
-        playersClean = removal.astype(convert_dict)
-        goalLeaders =  playersClean.nlargest(25, ['Gls'])
-        assistLeaders = playersClean.nlargest(25, ['Ast'])
-        xGLeaders = playersClean.nlargest(25, ['xG'])
-        xALeaders = playersClean.nlargest(25, ['xA'])
-        return (goalLeaders, assistLeaders, xGLeaders, xALeaders)
+    print(url)
+    attempts = 0
+    while (attempts < 5):
+        try:
+            browser.get(url)
+            html = browser.page_source
+            soup = BeautifulSoup(html)
+            all_stats_standard = soup.find_all(id='all_stats_standard')
+            players_tables = all_stats_standard[0].find_all('table')
+            # print(players_tables)
+            players = pd.read_html(str(players_tables[1]))[0]
+            players.columns = players.columns.droplevel(0)
+            # print(players.columns)
+            players.columns = ['Rk', 'Player', 'Nation', 'Pos', 'Squad', 'Age', 'Born', 'MP', 'Starts', 'Min', 'Gls', 'Ast', 'PK', 'PKatt', 'CrdY', 'CrdR', 'Gls/90','Ast/90','G+A/90','G-PK/90', 'G+A-PK/90', 'xG', 'npxG', 'xA', 'xG/90', 'xA/90', 'xG+xA/90', 'npxG/90', 'npxG+xA/90', 'Matches']
+            removal = players[players.xG != 'xG']
+            playersClean = removal.astype(convert_dict)
+            goalLeaders =  playersClean.nlargest(25, ['Gls'])
+            assistLeaders = playersClean.nlargest(25, ['Ast'])
+            xGLeaders = playersClean.nlargest(25, ['xG'])
+            xALeaders = playersClean.nlargest(25, ['xA'])
+            break
+        except IndexError as e:
+            attempts += 1
+            print(attempts)
+    return (goalLeaders, assistLeaders, xGLeaders, xALeaders)
 
 
 def table(league):
@@ -102,22 +113,30 @@ def table(league):
         url = ligueOneTable
     else:
         print ("League Not Recognized. Options are: epl, bundesliga, laLiga, serieA, ligueOne")
-    r = requests.get(url)
-    soup = BeautifulSoup(r.text)
-    all_stats_standard = soup.find_all('table')
-    table = pd.read_html(str(all_stats_standard))[0]
-    return table
+    attempts = 0
+    while (attempts < 5):
+        try:
+            browser.get(url)
+            html = browser.page_source
+            soup = BeautifulSoup(html)
+            team_table = soup.find_all('table')
+            table = pd.read_html(str(team_table[1]))[0]
+            cleaned_table = table.drop(["Notes"], axis=1)
+            break
+        except IndexError as e:
+            attempts += 1
+            print(attempts)
+    
+    return cleaned_table
 
 def printStats(league):
     scores = leaders(league)
     teams = table(league)
-    if scores:
-        scorers = scores[0]
-        print (scorers[['Player', 'Age', 'Pos' ,'Squad', 'Gls/90', 'Ast/90', 'xG/90', 'xA/90', 'npxG/90', 'xG+xA/90']].sort_values(by = 'npxG/90', ascending=False))
-    if not teams.empty:
-        print (teams)
+    scorers = scores[0]
+    print (scorers[['Player', 'Age', 'Pos' ,'Squad', 'Gls/90', 'Ast/90', 'xG/90', 'xA/90', 'npxG/90', 'xG+xA/90']].sort_values(by = 'npxG/90', ascending=False))
+    print (teams)
 
-printStats("epl")
+printStats("ligueOne")
 
 # eplScorers = leaders("epl")
 # bundesligaScorers = leaders("bundesliga")
