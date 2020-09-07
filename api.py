@@ -9,7 +9,7 @@ from selenium import webdriver
 
 #load phantomJS driver
 #change the executable path after you got it installed
-browser = webdriver.PhantomJS(executable_path="C:\\Users\\Shashank\\phantomjs-2.1.1-windows\\bin\\phantomjs.exe")
+browser = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs")
 
 #Leagues
 # prem = "https://widgets.sports-reference.com/wg.fcgi?css=1&site=fb&url=%2Fen%2Fcomps%2F9%2Fstats%2FPremier-League-Stats&div=div_stats_standard"
@@ -75,17 +75,21 @@ def leaders(league):
         print ("League Not Recognized. Options are: epl, bundesliga, laLiga, serieA, ligueOne") 
     print(url)
     attempts = 0
-    while (attempts < 5):
+    while (attempts < 2):
         try:
             browser.get(url)
             html = browser.page_source
+            #print(html)
             soup = BeautifulSoup(html)
             all_stats_standard = soup.find_all(id='all_stats_standard')
+            #print(all_stats_standard)
             players_tables = all_stats_standard[0].find_all('table')
-            # print(players_tables)
-            players = pd.read_html(str(players_tables[1]))[0]
+            #print(players_tables[0])
+            players = pd.read_html(str(players_tables[0]))[0]
+            #print("Loaded players")
+            #print(players)
             players.columns = players.columns.droplevel(0)
-            # print(players.columns)
+            #print(players.columns)
             players.columns = ['Rk', 'Player', 'Nation', 'Pos', 'Squad', 'Age', 'Born', 'MP', 'Starts', 'Min', 'Gls', 'Ast', 'PK', 'PKatt', 'CrdY', 'CrdR', 'Gls/90','Ast/90','G+A/90','G-PK/90', 'G+A-PK/90', 'xG', 'npxG', 'xA', 'xG/90', 'xA/90', 'xG+xA/90', 'npxG/90', 'npxG+xA/90', 'Matches']
             removal = players[players.xG != 'xG']
             playersClean = removal.astype(convert_dict)
@@ -93,6 +97,7 @@ def leaders(league):
             assistLeaders = playersClean.nlargest(25, ['Ast'])
             xGLeaders = playersClean.nlargest(25, ['xG'])
             xALeaders = playersClean.nlargest(25, ['xA'])
+            #print(playersClean)
             break
         except IndexError as e:
             attempts += 1
@@ -121,13 +126,14 @@ def table(league):
             soup = BeautifulSoup(html)
             team_table = soup.find_all('table')
             table = pd.read_html(str(team_table[1]))[0]
-            cleaned_table = table.drop(["Notes"], axis=1)
+            #print(table)
+            #cleaned_table = table.drop(["Notes"], axis=1)
             break
         except IndexError as e:
             attempts += 1
             print(attempts)
     
-    return cleaned_table
+    return table
 
 def printStats(league):
     scores = leaders(league)
