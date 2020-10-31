@@ -1,0 +1,26 @@
+[INFO  - 2020-10-30T22:34:07.075Z] GhostDriver - Main - running on port 39047
+[INFO  - 2020-10-30T22:34:07.971Z] Session [06020e00-1b00-11eb-b84c-89fdfc55d518] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2020-10-30T22:34:07.971Z] Session [06020e00-1b00-11eb-b84c-89fdfc55d518] - page.customHeaders:  - {}
+[INFO  - 2020-10-30T22:34:07.971Z] Session [06020e00-1b00-11eb-b84c-89fdfc55d518] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"linux-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2020-10-30T22:34:07.971Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 06020e00-1b00-11eb-b84c-89fdfc55d518
+[ERROR - 2020-10-30T22:34:08.873Z] Session [06020e00-1b00-11eb-b84c-89fdfc55d518] - page.onError - msg: ReferenceError: Can't find variable: URLSearchParams
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-10-30T22:34:08.874Z] Session [06020e00-1b00-11eb-b84c-89fdfc55d518] - page.onError - stack:
+  scroll_to_stathead_results (https://d2p3bygnnzw9w3.cloudfront.net/req/202010221/js/fb/sr-min-en.js:1)
+  sr_utilities_js_load (https://d2p3bygnnzw9w3.cloudfront.net/req/202010221/js/fb/sr-min-en.js:1)
+  sr_fire_js (https://d2p3bygnnzw9w3.cloudfront.net/req/202010221/js/fb/sr-min-en.js:1)
+  vjs_ready (https://fbref.com/en/players/d5dd5f1f/matchlogs/2020-2021/summary/Pierre-Emerick-Aubameyang-Match-Logs:43)
+  (anonymous function) (https://fbref.com/en/players/d5dd5f1f/matchlogs/2020-2021/summary/Pierre-Emerick-Aubameyang-Match-Logs:48)
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-10-30T22:34:08.993Z] Session [06020e00-1b00-11eb-b84c-89fdfc55d518] - page.onError - msg: TypeError: undefined is not a constructor (evaluating '(1e7-_).toString().padStart(9,"0")')
+
+  phantomjs://platform/console++.js:263 in error
+[ERROR - 2020-10-30T22:34:08.993Z] Session [06020e00-1b00-11eb-b84c-89fdfc55d518] - page.onError - stack:
+  cse_generateLookupTable (https://d2p3bygnnzw9w3.cloudfront.net/req/202010221/js/fb/sr-min-en.js:1)
+  cse_generateAutocompleteDataStructures (https://d2p3bygnnzw9w3.cloudfront.net/req/202010221/js/fb/sr-min-en.js:1)
+  (anonymous function) (https://d2p3bygnnzw9w3.cloudfront.net/req/202010221/js/fb/sr-min-en.js:1)
+  onload (https://d2p3bygnnzw9w3.cloudfront.net/req/202010221/js/fb/sr-min-en.js:1)
+
+  phantomjs://platform/console++.js:263 in error

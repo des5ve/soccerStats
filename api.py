@@ -4,7 +4,6 @@ from requests.auth import HTTPBasicAuth
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
-import matplotlib.pyplot as plt
 from selenium import webdriver
 
 #load phantomJS driver
