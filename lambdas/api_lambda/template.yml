@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 
+  SAM Template for getting league stats
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 30
+
+Resources:
+  FootballLeagueStatsFuction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: api/
+      Handler: app.lambda_handler
+      Runtime: python3.7
+      Layers:
+        - arn:aws:lambda:us-east-1:686594718939:layer:phantomjs-layer:1
+      Events:
+        GetGoalLeadersPerLeague:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /leaders/goals
+            Method: get
+            RequestParameters:
+              method.request.querystring.league:
+                Required: true
+
+Outputs:
+  LeagueStatsFunction:
+    Description: "Create Football League Stats Lambda Function ARN"
+    Value: !GetAtt FootballLeagueStatsFuction.Arn

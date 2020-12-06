@@ -1,0 +1,11 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "get-player-goal-leaders-per-league"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-30705cey2hon"
+s3_prefix = "get-player-goal-leaders-per-league"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+
