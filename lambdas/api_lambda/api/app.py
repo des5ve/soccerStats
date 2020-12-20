@@ -79,7 +79,7 @@ def leaders(league):
         try:
             browser.get(url)
             html = browser.page_source
-            print(html)
+            # print(html)
             soup = BeautifulSoup(html)
             all_stats_standard = soup.find_all(id='all_stats_standard')
             #print(all_stats_standard)
@@ -105,8 +105,8 @@ def leaders(league):
     # return (goalLeaders, assistLeaders, xGLeaders, xALeaders)
     # scorers = scores[0]
 
-    return "Hello World"
-    # return goalLeaders.to_json(orient="index")
+    # return "Hello World"
+    return goalLeaders.to_json(orient="index")
 
 def table(league):
     if league == "epl":
@@ -170,9 +170,9 @@ def lambda_handler(event, context):
         Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
     """
     try:
-        # league = event['queryStringParameters']['league']
-        # response = leaders(league)
-        response = leaders("laLiga")
+        league = event['queryStringParameters']['league']
+        response = leaders(league)
+        # response = leaders("laLiga")
     except Exception as e:
         logger.error(e)
 
